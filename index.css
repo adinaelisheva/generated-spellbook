@@ -1,0 +1,16 @@
+body {
+  font-family: 'Calligraffitti', cursive;
+  background-color: #fff9e2;
+  color: #402700;
+  padding: 30px;
+  padding-bottom: 10px;
+}
+
+div#main {
+  height: calc(100% - 25px);
+}
+
+div#footer {
+    height: 25px;
+    text-align: center;
+}
