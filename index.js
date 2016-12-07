@@ -13,6 +13,8 @@
       "Mix the salt and spider leg into the water.",
       "Drink without breathing."
     ];
+
+    $scope.pagenum = Math.ceil(Math.random() * 997) + 2;
   });
 
 })();
