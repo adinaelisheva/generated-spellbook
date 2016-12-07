@@ -2,27 +2,26 @@
   <head>
     <link href="https://fonts.googleapis.com/css?family=Calligraffitti|IM+Fell+English:400i" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
     <title>A Modern Witch's Spellbook</title>
   </head>
-  <body>
+  <body ng-app="spells" ng-controller="spellCtrl">
     <div id="main">
-      <h2>A spell to rid yourself of hunger</h2>
+      <h2>{{spellname}}</h2>
       <div id="ingredients">
         <h3>Ingredients</h3>
         <ul>
-          <li>3 pinches of salt</li>
-          <li>The foot of a spider</li>
-          <li>1 small glass of water</li>
+          <li ng-repeat="i in ingredients">{{i}}</li>
         </ul>
       </div>
       <div id="special">
-        Perform while sitting alone in a room, preferably seated on the floor.
+        {{special}}
       </div>
       <div id="steps">
         <h3>Steps</h3>
         <ol>
-          <li>Mix the salt and spider leg into the water.</li>
-          <li>Drink without breathing.</li>
+          <li ng-repeat="s in steps">{{s}}</li>
         </ol>
       </div>
     </div>
