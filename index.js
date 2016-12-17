@@ -52,7 +52,7 @@
     'black' : { 'name' : 'black',  'type' : 'color', 'canBeColored' : false}
   }
 
-  godNames = ['Lord','Lady','Master','Mistress','God','Goddess','Saint','Patron','Matron','']
+  godNames = ['Lord','Lady','Master','Mistress','God','Goddess','Saint','Patron','Matron']
 
   positiveInvocations = [
     'Call out to the ^ of _',
