@@ -3,53 +3,118 @@
 
   var concepts = [
     {name: 'money', positive: true, traits: ['metal','light','green','weight']},
-    {name: 'love', positive: true, traits: ['','','','','','']},
-    {name: 'luck', positive: true, traits: ['','','','','','']},
-    {name: 'fortune', positive: true, traits: ['','','','','','']},
-    {name: 'health', positive: true, traits: ['','','','','','']},
-    {name: 'peace', positive: true, traits: ['','','','','','']},
-    {name: 'joy', positive: true, traits: ['','','','','','']},
-    {name: 'calm', positive: true, traits: ['','','','','','']},
-    {name: 'strength', positive: true, traits: ['','','','','','']},
-    {name: 'work', positive: true, traits: ['','','','','','']},
-    {name: 'work', positive: false, traits: ['','','','','','']},
-    {name: 'sorrow', positive: false, traits: ['','','','','','']},
-    {name: 'fatigue', positive: false, traits: ['','','','','','']},
-    {name: 'hunger', positive: false, traits: ['','','','','','']},
-    {name: 'ill luck', positive: false, traits: ['','','','','','']},
-    {name: 'bad fortune', positive: false, traits: ['','','','','','']},
-    {name: 'negative influences', positive: false, traits: ['','','','','','']},
-    {name: 'enemies', positive: false, traits: ['','','','','','']}
+    {name: 'love', positive: true, traits: ['red','soft','light','growth','happiness']},
+    {name: 'luck', positive: true, traits: ['light','green','growth','happiness']},
+    {name: 'fortune', positive: true, traits: ['light','gold','growth','music']},
+    {name: 'health', positive: true, traits: ['calm','blue','soothing','growth']},
+    {name: 'peace', positive: true, traits: ['music','calm','white','stillness']},
+    {name: 'joy', positive: true, traits: ['music','light','gold','happiness']},
+    {name: 'calm', positive: true, traits: ['calm','soothing','blue','stillness']},
+    {name: 'strength', positive: true, traits: ['growth','metal','weight','support']},
+    {name: 'work', positive: true, traits: ['growth','weight','support','happiness']},
+    //the traits of negative things are the opposite of the things themselves
+    {name: 'work', positive: false, traits: ['light','growth','space','time']},
+    {name: 'sorrow', positive: false, traits: ['happiness','light','growth','music']},
+    {name: 'fatigue', positive: false, traits: ['rest','calm','space','light']},
+    {name: 'hunger', positive: false, traits: ['weight','growth','food','gold']},
+    {name: 'ill luck', positive: false, traits: ['light','green','growth','happiness']},
+    {name: 'bad fortune', positive: false, traits: ['light','gold','growth','music']},
+    {name: 'negative influences', positive: false, traits: ['growth','space','happiness','support']},
+    {name: 'enemies', positive: false, traits: ['growth','heavy','metal','space']}
   ]
 
   var traitsToIngredients = {
     'metal' : ['coin','red wine','mirror','ring','silver'],
-    'light' : ['candle','mirror','gold'],//'eye'],
-    'green' : ['green','basil','olive oil','thyme'],
+    'light' : ['candle','mirror','gold','crystal'],//'eye'],
+    'green' : ['green','basil','olive oil','thyme','clover'],
     'weight' : ['stone','dish','grey','black'],
-    '' : [],
-    '' : [],
-    '' : [],
+    'blue' : ['blue','water','milk','marble'],
+    'calm' : ['silk','water','pearl','cotton','incense'],
+    'food' : ['bread','cake','cookie','apple','biscuit'],
+    'gold' : ['gold','coin','necklace','ring'],
+    'growth' : ['plant','fern','crystal','rose','daisy','basil','thyme','tulip','clover'],
+    'happiness' : ['gold','candle','cookie','rose','white wine','glitter'],
+    'heavy' : ['coin','paperweight','dish','small statue'],
+    'music' : ['musical instrument','radio','glitter','bell','rattle'],
+    'red' : ['red','rose','blood','red wine','ruby'],
+    'rest' : ['linen','cotton','doll','white'],
+    'soft' : ['linen','silk','cotton','felt','wool'],
+    'soothing' : ['linen','musical instrument','candle','blue','white wine'],
+    'space' : ['bowl','dish','glass','cup','crystal'],
+    'stillness' : ['water','bowl','incense','crystal','white'],
+    'support' : ['small statue','paperweight','dish','plant'],
+    'time' : ['thyme','hourglass','plant','fern','rose','tulip'],
+    'white' : ['white','white wine','linen','glass']
   }
 
   var namesToObjs = {
-    'coin' : { 'name' : 'coin',  'type' : 'object', 'canBeColored' : true},
-    'red wine' : { 'name' : 'red wine',  'type' : 'liquid', 'canBeColored' : false},
-    'white wine' : { 'name' : 'white wine',  'type' : 'liquid', 'canBeColored' : false},
-    'mirror' : { 'name' : 'mirror',  'type' : 'object', 'canBeColored' : true},
-    'ring' : { 'name' : 'ring',  'type' : 'object', 'canBeColored' : true},
-    'silver' : { 'name' : 'silver',  'type' : 'color', 'canBeColored' : false},
-    'green' : { 'name' : 'green',  'type' : 'color', 'canBeColored' : false},
-    'gold' : { 'name' : 'gold',  'type' : 'color', 'canBeColored' : false},
-    'candle' : { 'name' : 'candle',  'type' : 'object', 'canBeColored' : true},
-    //'eye' : { 'name' : 'eye',  'type' : 'symbol', 'canBeColored' : true},
-    'basil' : { 'name' : 'basil',  'type' : 'spice', 'canBeColored' : false},
-    'thyme' : { 'name' : 'thyme',  'type' : 'spice', 'canBeColored' : false},
-    'olive oil' : { 'name' : 'olive oil', 'type' : 'liquid', 'canBeColored' : false},
-    'stone' : { 'name' : 'stone',  'type' : 'object', 'canBeColored' : true},
-    'dish' : { 'name' : 'dish',  'type' : 'object', 'canBeColored' : true},
-    'grey' : { 'name' : 'grey',  'type' : 'color', 'canBeColored' : false},
-    'black' : { 'name' : 'black',  'type' : 'color', 'canBeColored' : false}
+    'crystal' : {'name' : 'crystal', 'type' : 'object', 'canBeColored': true, prefix: ''},
+    'coin' : { 'name' : 'coin',  'type' : 'object', 'canBeColored' : true, prefix:''},
+    'red wine' : { 'name' : 'red wine',  'type' : 'liquid', 'canBeColored' : false, prefix:''},
+    'white wine' : { 'name' : 'white wine',  'type' : 'liquid', 'canBeColored' : false, prefix:''},
+    'mirror' : { 'name' : 'mirror',  'type' : 'object', 'canBeColored' : true, prefix:''},
+    'ring' : { 'name' : 'ring',  'type' : 'object', 'canBeColored' : true, prefix:''},
+    'silver' : { 'name' : 'silver',  'type' : 'color', 'canBeColored' : false, prefix:''},
+    'green' : { 'name' : 'green',  'type' : 'color', 'canBeColored' : false, prefix:''},
+    'gold' : { 'name' : 'gold',  'type' : 'color', 'canBeColored' : false, prefix:''},
+    'candle' : { 'name' : 'candle',  'type' : 'object', 'canBeColored' : true, prefix:''},
+    //'eye' : { 'name' : 'eye',  'type' : 'symbol', 'canBeColored' : true, prefix:''},
+    'basil' : { 'name' : 'basil',  'type' : 'powder', 'canBeColored' : false, prefix:''},
+    'thyme' : { 'name' : 'thyme',  'type' : 'powder', 'canBeColored' : false, prefix:''},
+    'olive oil' : { 'name' : 'olive oil', 'type' : 'liquid', 'canBeColored' : false, prefix:''},
+    'stone' : { 'name' : 'stone',  'type' : 'object', 'canBeColored' : true, prefix:''},
+    'dish' : { 'name' : 'dish',  'type' : 'object', 'canBeColored' : true, prefix:''},
+    'grey' : { 'name' : 'grey',  'type' : 'color', 'canBeColored' : false, prefix:''},
+    'black' : { 'name' : 'black',  'type' : 'color', 'canBeColored' : false, prefix:''},
+    'clover' : { 'name' : 'clover', 'type' : 'object', 'canBeColored' : false, prefix:''},
+    'apple' : { 'name' : 'apple', 'type' : '', 'canBeColored' : true, 'prefix' : ''},
+    'bell' : { 'name' : 'bell', 'type' : '', 'canBeColored' : true, 'prefix' : ''},
+    'biscuit' : { 'name' : 'biscuit', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'blood' : { 'name' : 'blood', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
+    'blue' : { 'name' : 'blue', 'type' : 'color', 'canBeColored' : false, 'prefix' : ''},
+    'bowl' : { 'name' : 'bowl', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'bread' : { 'name' : 'bread', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'cake' : { 'name' : 'cake', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'cookie' : { 'name' : 'cookie', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'cotton' : { 'name' : 'cotton', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'cup' : { 'name' : 'cup', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'daisy' : { 'name' : 'daisy', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'doll' : { 'name' : 'doll', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'felt' : { 'name' : 'felt', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'fern' : { 'name' : 'fern', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'glass' : { 'name' : 'glass', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'glitter' : { 'name' : 'glitter', 'type' : 'powder', 'canBeColored' : true, 'prefix' : ''},
+    'hourglass' : { 'name' : 'hourglass', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'incense' : { 'name' : 'incense', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'linen' : { 'name' : 'linen', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'marble' : { 'name' : 'marble', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'milk' : { 'name' : 'milk', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
+    'musical instrument' : { 'name' : 'musical instrument', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'necklace' : { 'name' : 'necklace', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'paperweight' : { 'name' : 'paperweight', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'pearl' : { 'name' : 'pearl', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'plant' : { 'name' : 'plant', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'radio' : { 'name' : 'radio', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'rattle' : { 'name' : 'rattle', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'red' : { 'name' : 'red', 'type' : 'color', 'canBeColored' : false, 'prefix' : ''},
+    'rose' : { 'name' : 'rose', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'ruby' : { 'name' : 'ruby', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'silk' : { 'name' : 'silk', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'small statue' : { 'name' : 'small statue', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'tulip' : { 'name' : 'tulip', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'water' : { 'name' : 'water', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
+    'white' : { 'name' : 'white', 'type' : 'color', 'canBeColored' : false, 'prefix' : ''},
+    'wool' : { 'name' : 'wool', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+  }
+
+  var standalones = {
+    'candle' : 'Light the candle',
+    'bell' : 'Ring the bell',
+    'hourglass' : 'Invert the hourglass',
+    'incense' : 'Light the incense',
+    'musical instrument' : 'Play a tune on the instrument',
+    'radio' : 'Set the radio to playing music',
+    'rattle' : 'Shake the rattle'
   }
 
   godNames = ['Lord','Lady','Master','Mistress','God','Goddess','Saint','Patron','Matron']
@@ -105,6 +170,7 @@
       var names = stuff.concat(colors.concat(canBeColored)).map(function(x) { return x.name; });
       var ing = getNewIngredient(trait, names, colors.length < canBeColored.length);
       if(!ing) { continue; }
+      ing.reason = trait;
       if(ing.type === 'color' ) {
         colors.push(ing);
       } else if(ing.canBeColored) {
@@ -115,7 +181,7 @@
     }
     for(i = 0; i < canBeColored.length; i++) {
       if(colors[i]) {
-        canBeColored[i].name = colors[i].name + ' ' + canBeColored[i].name;
+        canBeColored[i].prefix = colors[i].name + ' ';
       }
       stuff.push(canBeColored[i]);
     }
@@ -126,31 +192,42 @@
     return a.type > b.type ? 1 : a.type < b.type ? -1 : 0;
   }
 
+  var containers = ['bowl','cup','dish','glass'];
+
   var getStep = function(ing1,ing2) {
-    //types are: 'liquid', 'object', 'spice'
+    //types are: 'liquid', 'object', 'powder'
     var ings = [ing1,ing2].sort(sortByType);
     ing1 = ings[0];
     ing2 = ings[1];
     var step,newIng;
-    if(ing1.type === 'liquid' && (ing2.type === 'liquid' || ing2.type === 'spice')){
+    if(ing1.type === 'liquid' && (ing2.type === 'liquid' || ing2.type === 'powder')){
       step = 'Mix ' + ing1.name + ' and ' + ing2.name;
       newIng = { 'name' : ing1.name + ' mixture',  'type' : 'liquid'};
     } else if(ing1.type === 'liquid' && ing2.type === 'object') {
-      var optionA = 'Pour ' + ing1.name + ' onto ' + ing2.name;
+      var prep = (containers.indexOf(ing2.name) > -1) ? 'into' : 'onto';
+      var optionA = 'Pour ' + ing1.name + ' ' + prep + ' ' + ing2.name;
       var optionB = 'Annoint ' + ing2.name + ' with ' + ing1.name;
       step = rndArr([optionA, optionB]);
       newIng = { 'name' : ing2.name,  'type' : 'object'};
     } else if(ing1.type === 'object' && ing2.type === 'object') {
-      var optionA = 'Place ' + ing1.name + ' onto ' + ing2.name;
+      if(containers.indexOf(ing1.name) > -1) {
+        //swap them so stuff is being put /onto/ the container
+        var tmp = ing1;
+        ing1 = ing2;
+        ing2 = ing1;
+      }
+      var prep = (containers.indexOf(ing2.name) > -1) ? 'into' : 'onto';
+      var optionA = 'Place ' + ing1.name + ' ' + prep + ' ' + ing2.name;
       var optionB = 'Attach ' + ing2.name + ' to ' + ing1.name;
       step = rndArr([optionA, optionB]);
       newIng = { 'name' : ing1.name + ' and ' + ing2.name,  'type' : 'object'};
-    } else if(ing1.type === 'object' && ing2.type === 'spice') {
-      step = 'Sprinkle ' + ing2.name + ' onto ' + ing1.name;
+    } else if(ing1.type === 'object' && ing2.type === 'powder') {
+      var prep = (containers.indexOf(ing1.name) > -1) ? 'into' : 'onto';
+      step = 'Sprinkle ' + ing2.name + ' ' + prep + ' ' + ing1.name;
       newIng = { 'name' : ing1.name,  'type' : 'object'};
-    } else if(ing1.type === 'spice' && ing2.type === 'spice') {
+    } else if(ing1.type === 'powder' && ing2.type === 'powder') {
       step = 'Mix ' + ing1.name + ' and ' + ing2.name;
-      newIng = { 'name' : ing1.name + ' mixture',  'type' : 'spice'};
+      newIng = { 'name' : ing1.name + ' mixture',  'type' : 'powder'};
     }
     return [step,newIng];
   }
@@ -162,25 +239,64 @@
       //combine the ingredients 1 by 1
       var ing1 = ingredients.pop();
       var ing2 = ingredients.pop();
-      var result = getStep(ing1,ing2);
-      steps.push(result[0]);
-      ingredients.push(result[1]);
+      if(standalones[ing1.name]) {
+        steps.push(standalones[ing1.name]);
+        ingredients.push(ing2);
+      } else if (standalones[ing2.name]) {
+        steps.push(standalones[ing2.name]);
+        ingredients.push(ing1);
+      } else {
+        var result = getStep(ing1,ing2);
+        steps.push(result[0]);
+        ingredients.push(result[1]);
+      }
     }
     return steps;
   };
 
+  var toUpperWord = function(word) {
+    return word.substring(0,1).toUpperCase() + word.substring(1);
+  }
+
+  var toUpper = function(sentence){
+    var arr = sentence.split(' ');
+    var ret = [];
+    for(var i = 0; i < arr.length; i++){
+      ret.push(toUpperWord(arr[i]));
+    }
+    return ret.join(' ');
+  };
+
   var getInvocation = function(concept) {
     var invocations = concept.positive ? positiveInvocations : negativeInvocations;
-    return rndArr(invocations).replace('_',concept.name).replace('^',rndArr(godNames));
+    return rndArr(invocations).replace('_',toUpper(concept.name)).replace('^',rndArr(godNames));
+  }
+
+  var getHistory = function(ingredients) {
+    var date = Math.ceil(Math.random() * 1000) + 1000;
+    var starts = [
+      'This spell dates from _. ',
+      'This spell was written in _. ',
+      'This spell was discovered in a manuscript from _. ',
+      'Written in _, this spell was found in an old scroll. ',
+      'Discovered in a mysterious cavern, the manuscript containing this scroll dates from _. '
+    ];
+    var verbs = ['invoke','represent','induce','bring to mind']
+    var history = rndArr(starts).replace('_',date);
+    for(var i = 0; i < ingredients.length; i++) {
+      var ing = ingredients[i];
+      history += ('The ' + ing.name + ' is included to ' + rndArr(verbs) + ' ' + ing.reason + '. ');
+    }
+    return history;
   }
 
   app.controller( 'spellCtrl', function( $scope, $http ) {
-    var concept = concepts[0];//rndArr(concepts);
+    var concept = rndArr(concepts);
     $scope.spellname = getSpellName(concept);
-    var ingredients = getIngredients(concept);
-    $scope.ingNameList = ingredients.map(function(x){return x.name;});
+    $scope.ingredients = getIngredients(concept);
     $scope.special = '';
-    var steps = getSteps(ingredients)
+    $scope.history = getHistory($scope.ingredients);
+    var steps = getSteps($scope.ingredients);
     steps.push(getInvocation(concept));
     $scope.steps = steps;
     $scope.pagenum = Math.ceil(Math.random() * 997) + 2;

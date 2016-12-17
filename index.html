@@ -13,7 +13,7 @@
       <div id="ingredients">
         <h3>Ingredients</h3>
         <ul>
-          <li ng-repeat="i in ingNameList">{{i}}</li>
+          <li ng-repeat="i in ingredients" ng-if="!i.hidden">{{i.name}}</li>
         </ul>
       </div>
       <div id="special">
@@ -24,6 +24,10 @@
         <ol>
           <li ng-repeat="s in steps">{{s}}</li>
         </ol>
+      </div>
+      <div>
+        <h3>History</h3>
+        <p>{{history}}</p>
       </div>
     </div>
     <div id="footer">- {{pagenum}} -</div>
