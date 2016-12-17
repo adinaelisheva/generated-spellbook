@@ -2,6 +2,7 @@
   <head>
     <link href="https://fonts.googleapis.com/css?family=Calligraffitti|IM+Fell+English:400i" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <title>A Modern Witch's Spellbook</title>
@@ -12,7 +13,7 @@
       <div id="ingredients">
         <h3>Ingredients</h3>
         <ul>
-          <li ng-repeat="i in ingredients">{{i}}</li>
+          <li ng-repeat="i in ingNameList">{{i}}</li>
         </ul>
       </div>
       <div id="special">
