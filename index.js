@@ -201,12 +201,12 @@
     ing2 = ings[1];
     var step,newIng;
     if(ing1.type === 'liquid' && (ing2.type === 'liquid' || ing2.type === 'powder')){
-      step = 'Mix ' + ing1.name + ' and ' + ing2.name;
+      step = 'Mix the ' + ing1.name + ' and the ' + ing2.name;
       newIng = { 'name' : ing1.name + ' mixture',  'type' : 'liquid'};
     } else if(ing1.type === 'liquid' && ing2.type === 'object') {
       var prep = (containers.indexOf(ing2.name) > -1) ? 'into' : 'onto';
-      var optionA = 'Pour ' + ing1.name + ' ' + prep + ' ' + ing2.name;
-      var optionB = 'Annoint ' + ing2.name + ' with ' + ing1.name;
+      var optionA = 'Pour the ' + ing1.name + ' ' + prep + ' the ' + ing2.name;
+      var optionB = 'Annoint the ' + ing2.name + ' with the ' + ing1.name;
       step = rndArr([optionA, optionB]);
       newIng = { 'name' : ing2.name,  'type' : 'object'};
     } else if(ing1.type === 'object' && ing2.type === 'object') {
@@ -217,16 +217,16 @@
         ing2 = ing1;
       }
       var prep = (containers.indexOf(ing2.name) > -1) ? 'into' : 'onto';
-      var optionA = 'Place ' + ing1.name + ' ' + prep + ' ' + ing2.name;
-      var optionB = 'Attach ' + ing2.name + ' to ' + ing1.name;
+      var optionA = 'Place the ' + ing1.name + ' ' + prep + ' the ' + ing2.name;
+      var optionB = 'Attach the ' + ing2.name + ' to the ' + ing1.name;
       step = rndArr([optionA, optionB]);
       newIng = { 'name' : ing1.name + ' and ' + ing2.name,  'type' : 'object'};
     } else if(ing1.type === 'object' && ing2.type === 'powder') {
       var prep = (containers.indexOf(ing1.name) > -1) ? 'into' : 'onto';
-      step = 'Sprinkle ' + ing2.name + ' ' + prep + ' ' + ing1.name;
+      step = 'Sprinkle the ' + ing2.name + ' ' + prep + ' the ' + ing1.name;
       newIng = { 'name' : ing1.name,  'type' : 'object'};
     } else if(ing1.type === 'powder' && ing2.type === 'powder') {
-      step = 'Mix ' + ing1.name + ' and ' + ing2.name;
+      step = 'Mix the ' + ing1.name + ' and the ' + ing2.name;
       newIng = { 'name' : ing1.name + ' mixture',  'type' : 'powder'};
     }
     return [step,newIng];
