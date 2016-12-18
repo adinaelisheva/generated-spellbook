@@ -67,8 +67,8 @@
     'grey' : { 'name' : 'grey',  'type' : 'color', 'canBeColored' : false, prefix:''},
     'black' : { 'name' : 'black',  'type' : 'color', 'canBeColored' : false, prefix:''},
     'clover' : { 'name' : 'clover', 'type' : 'object', 'canBeColored' : false, prefix:''},
-    'apple' : { 'name' : 'apple', 'type' : '', 'canBeColored' : true, 'prefix' : ''},
-    'bell' : { 'name' : 'bell', 'type' : '', 'canBeColored' : true, 'prefix' : '', 'standalone' : 'Ring the bell'},
+    'apple' : { 'name' : 'apple', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'bell' : { 'name' : 'bell', 'type' : 'object', 'canBeColored' : true, 'prefix' : '', 'standalone' : 'Ring the bell'},
     'biscuit' : { 'name' : 'biscuit', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
     'blood' : { 'name' : 'blood', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
     'blue' : { 'name' : 'blue', 'type' : 'color', 'canBeColored' : false, 'prefix' : ''},
@@ -194,6 +194,8 @@
   var containers = ['bowl','cup','dish','glass'];
 
   var getStep = function(ing1,ing2) {
+    var standalone = ing2.standalone; //if ing1 had a standalone it'd be processed already
+
     //types are: 'liquid', 'object', 'powder'
     var ings = [ing1,ing2].sort(sortByType);
     ing1 = ings[0];
@@ -220,8 +222,7 @@
       var optionA = 'Place the ' + ing1.name + ' ' + prep + ' the ' + ing2.name;
       var optionB = 'Attach the ' + ing2.name + ' to the ' + ing1.name;
       step = rndArr([optionA, optionB]);
-      var standalone = ing1.standalone ? ing1.standalone : ing2.standalone ? ing2.standalone : undefined;
-      newIng = { 'name' : ing1.name + ' and ' + ing2.name,  'type' : 'object', 'standalone' : standalone};
+      newIng = { 'name' : ing1.name + ' and ' + ing2.name,  'type' : 'object'};
     } else if(ing1.type === 'object' && ing2.type === 'powder') {
       var prep = (containers.indexOf(ing1.name) > -1) ? 'into' : 'onto';
       step = 'Sprinkle the ' + ing2.name + ' ' + prep + ' the ' + ing1.name;
@@ -230,18 +231,24 @@
       step = 'Mix the ' + ing1.name + ' and the ' + ing2.name;
       newIng = { 'name' : ing1.name + ' mixture',  'type' : 'powder'};
     }
+    if(standalone){ newIng.standalone = standalone; } 
+    newIng.processed = true;
     return [step,newIng];
   }
 
   var getSteps = function(ingredients) {
     ingredients = _.shuffle(ingredients);
     var steps = [];
-    console.log(ingredients);
-    while(ingredients.length > 0) {
+    while(ingredients.length > 0) {    
       //combine the ingredients 1 by 1
       var ing1 = ingredients.pop();
-      if(ing1.standalone) {
+      if(ing1.standalone && !ing1.stoodAlone) {
         steps.push(ing1.standalone);
+        if(ingredients.length === 1 && !ingredients[0].processed) {
+          //we missed one ingredient still 
+          ing1.stoodAlone = true;
+          ingredients.push(ing1);
+        }
       } else if(ingredients.length > 0) {
         var ing2 = ingredients.pop();
         var result = getStep(ing1,ing2);
