@@ -57,7 +57,7 @@
     'silver' : { 'name' : 'silver',  'type' : 'color', 'canBeColored' : false, prefix:''},
     'green' : { 'name' : 'green',  'type' : 'color', 'canBeColored' : false, prefix:''},
     'gold' : { 'name' : 'gold',  'type' : 'color', 'canBeColored' : false, prefix:''},
-    'candle' : { 'name' : 'candle',  'type' : 'object', 'canBeColored' : true, prefix:''},
+    'candle' : { 'name' : 'candle',  'type' : 'object', 'canBeColored' : true, prefix:'', 'standalone' : 'Light the candle'},
     //'eye' : { 'name' : 'eye',  'type' : 'symbol', 'canBeColored' : true, prefix:''},
     'basil' : { 'name' : 'basil',  'type' : 'powder', 'canBeColored' : false, prefix:''},
     'thyme' : { 'name' : 'thyme',  'type' : 'powder', 'canBeColored' : false, prefix:''},
@@ -68,7 +68,7 @@
     'black' : { 'name' : 'black',  'type' : 'color', 'canBeColored' : false, prefix:''},
     'clover' : { 'name' : 'clover', 'type' : 'object', 'canBeColored' : false, prefix:''},
     'apple' : { 'name' : 'apple', 'type' : '', 'canBeColored' : true, 'prefix' : ''},
-    'bell' : { 'name' : 'bell', 'type' : '', 'canBeColored' : true, 'prefix' : ''},
+    'bell' : { 'name' : 'bell', 'type' : '', 'canBeColored' : true, 'prefix' : '', 'standalone' : 'Ring the bell'},
     'biscuit' : { 'name' : 'biscuit', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
     'blood' : { 'name' : 'blood', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
     'blue' : { 'name' : 'blue', 'type' : 'color', 'canBeColored' : false, 'prefix' : ''},
@@ -84,18 +84,18 @@
     'fern' : { 'name' : 'fern', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
     'glass' : { 'name' : 'glass', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
     'glitter' : { 'name' : 'glitter', 'type' : 'powder', 'canBeColored' : true, 'prefix' : ''},
-    'hourglass' : { 'name' : 'hourglass', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
-    'incense' : { 'name' : 'incense', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
+    'hourglass' : { 'name' : 'hourglass', 'type' : 'object', 'canBeColored' : false, 'prefix' : '', 'standalone' : 'Invert the hourglass'},
+    'incense' : { 'name' : 'incense', 'type' : 'object', 'canBeColored' : false, 'prefix' : '', 'standalone' : 'Light the incense'},
     'linen' : { 'name' : 'linen', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
     'marble' : { 'name' : 'marble', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
     'milk' : { 'name' : 'milk', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
-    'musical instrument' : { 'name' : 'musical instrument', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'musical instrument' : { 'name' : 'musical instrument', 'type' : 'object', 'canBeColored' : true, 'prefix' : '', 'standalone' : 'Play a tune on the instrument'},
     'necklace' : { 'name' : 'necklace', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
     'paperweight' : { 'name' : 'paperweight', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
     'pearl' : { 'name' : 'pearl', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
     'plant' : { 'name' : 'plant', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
-    'radio' : { 'name' : 'radio', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
-    'rattle' : { 'name' : 'rattle', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'radio' : { 'name' : 'radio', 'type' : 'object', 'canBeColored' : true, 'prefix' : '', 'standalone' : 'Set the radio to playing music'},
+    'rattle' : { 'name' : 'rattle', 'type' : 'object', 'canBeColored' : true, 'prefix' : '', 'standalone' : 'Shake the rattle'},
     'red' : { 'name' : 'red', 'type' : 'color', 'canBeColored' : false, 'prefix' : ''},
     'rose' : { 'name' : 'rose', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
     'ruby' : { 'name' : 'ruby', 'type' : 'object', 'canBeColored' : false, 'prefix' : ''},
@@ -105,16 +105,6 @@
     'water' : { 'name' : 'water', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
     'white' : { 'name' : 'white', 'type' : 'color', 'canBeColored' : false, 'prefix' : ''},
     'wool' : { 'name' : 'wool', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
-  }
-
-  var standalones = {
-    'candle' : 'Light the candle',
-    'bell' : 'Ring the bell',
-    'hourglass' : 'Invert the hourglass',
-    'incense' : 'Light the incense',
-    'musical instrument' : 'Play a tune on the instrument',
-    'radio' : 'Set the radio to playing music',
-    'rattle' : 'Shake the rattle'
   }
 
   godNames = ['Lord','Lady','Master','Mistress','God','Goddess','Saint','Patron','Matron']
@@ -161,6 +151,15 @@
     }
   }
 
+  var getReason = function(trait) {
+    //special handling for traits that are colors
+    var obj = namesToObjs[trait];
+    if(obj && obj.type === 'color') {
+      return ' the color ' + trait;
+    }
+    return trait;
+  }
+
   var getIngredients = function(concept) {
     var stuff = [];
     var colors = [];
@@ -170,7 +169,7 @@
       var names = stuff.concat(colors.concat(canBeColored)).map(function(x) { return x.name; });
       var ing = getNewIngredient(trait, names, colors.length < canBeColored.length);
       if(!ing) { continue; }
-      ing.reason = trait;
+      ing.reason = getReason(trait);
       if(ing.type === 'color' ) {
         colors.push(ing);
       } else if(ing.canBeColored) {
@@ -200,6 +199,7 @@
     ing1 = ings[0];
     ing2 = ings[1];
     var step,newIng;
+
     if(ing1.type === 'liquid' && (ing2.type === 'liquid' || ing2.type === 'powder')){
       step = 'Mix the ' + ing1.name + ' and the ' + ing2.name;
       newIng = { 'name' : ing1.name + ' mixture',  'type' : 'liquid'};
@@ -214,13 +214,14 @@
         //swap them so stuff is being put /onto/ the container
         var tmp = ing1;
         ing1 = ing2;
-        ing2 = ing1;
+        ing2 = tmp;
       }
       var prep = (containers.indexOf(ing2.name) > -1) ? 'into' : 'onto';
       var optionA = 'Place the ' + ing1.name + ' ' + prep + ' the ' + ing2.name;
       var optionB = 'Attach the ' + ing2.name + ' to the ' + ing1.name;
       step = rndArr([optionA, optionB]);
-      newIng = { 'name' : ing1.name + ' and ' + ing2.name,  'type' : 'object'};
+      var standalone = ing1.standalone ? ing1.standalone : ing2.standalone ? ing2.standalone : undefined;
+      newIng = { 'name' : ing1.name + ' and ' + ing2.name,  'type' : 'object', 'standalone' : standalone};
     } else if(ing1.type === 'object' && ing2.type === 'powder') {
       var prep = (containers.indexOf(ing1.name) > -1) ? 'into' : 'onto';
       step = 'Sprinkle the ' + ing2.name + ' ' + prep + ' the ' + ing1.name;
@@ -235,17 +236,14 @@
   var getSteps = function(ingredients) {
     ingredients = _.shuffle(ingredients);
     var steps = [];
-    while(ingredients.length > 1) {
+    console.log(ingredients);
+    while(ingredients.length > 0) {
       //combine the ingredients 1 by 1
       var ing1 = ingredients.pop();
-      var ing2 = ingredients.pop();
-      if(standalones[ing1.name]) {
-        steps.push(standalones[ing1.name]);
-        ingredients.push(ing2);
-      } else if (standalones[ing2.name]) {
-        steps.push(standalones[ing2.name]);
-        ingredients.push(ing1);
-      } else {
+      if(ing1.standalone) {
+        steps.push(ing1.standalone);
+      } else if(ingredients.length > 0) {
+        var ing2 = ingredients.pop();
         var result = getStep(ing1,ing2);
         steps.push(result[0]);
         ingredients.push(result[1]);
@@ -281,11 +279,12 @@
       'Written in _, this spell was found in an old scroll. ',
       'Discovered in a mysterious cavern, the manuscript containing this scroll dates from _. '
     ];
-    var verbs = ['invoke','represent','induce','bring to mind']
+    var included = ['', 'included ', 'meant ','in order '];
+    var represent = ['symbolize','represent','bring to mind','stand for'];
     var history = rndArr(starts).replace('_',date);
     for(var i = 0; i < ingredients.length; i++) {
       var ing = ingredients[i];
-      history += ('The ' + ing.name + ' is included to ' + rndArr(verbs) + ' ' + ing.reason + '. ');
+      history += ('The ' + ing.name + ' is ' + rndArr(included) + 'to ' + rndArr(represent) + ' ' + ing.reason + '. ');
     }
     return history;
   }
