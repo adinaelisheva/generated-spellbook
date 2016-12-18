@@ -13,7 +13,7 @@
       <div id="ingredients">
         <h3>Ingredients</h3>
         <ul>
-          <li ng-repeat="i in ingredients" ng-if="!i.hidden">{{i.name}}</li>
+          <li ng-repeat="i in ingredients" ng-if="!i.hidden">{{i.prefix}} {{i.name}}</li>
         </ul>
       </div>
       <div id="special">

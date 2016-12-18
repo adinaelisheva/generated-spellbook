@@ -3,7 +3,7 @@
 
   var concepts = [
     {name: 'money', positive: true, traits: ['metal','light','green','weight']},
-    {name: 'love', positive: true, traits: ['red','soft','light','growth','happiness']},
+    {name: 'love', positive: true, traits: ['red','softness','light','growth','happiness']},
     {name: 'luck', positive: true, traits: ['light','green','growth','happiness']},
     {name: 'fortune', positive: true, traits: ['light','gold','growth','music']},
     {name: 'health', positive: true, traits: ['calm','blue','soothing','growth']},
@@ -20,7 +20,7 @@
     {name: 'ill luck', positive: false, traits: ['light','green','growth','happiness']},
     {name: 'bad fortune', positive: false, traits: ['light','gold','growth','music']},
     {name: 'negative influences', positive: false, traits: ['growth','space','happiness','support']},
-    {name: 'enemies', positive: false, traits: ['growth','heavy','metal','space']}
+    {name: 'enemies', positive: false, traits: ['growth','heaviness','metal','space']}
   ]
 
   var traitsToIngredients = {
@@ -34,11 +34,11 @@
     'gold' : ['gold','coin','necklace','ring'],
     'growth' : ['plant','fern','crystal','rose','daisy','basil','thyme','tulip','clover'],
     'happiness' : ['gold','candle','cookie','rose','white wine','glitter'],
-    'heavy' : ['coin','paperweight','dish','small statue'],
+    'heaviness' : ['coin','paperweight','dish','small statue'],
     'music' : ['musical instrument','radio','glitter','bell','rattle'],
     'red' : ['red','rose','blood','red wine','ruby'],
     'rest' : ['linen','cotton','doll','white'],
-    'soft' : ['linen','silk','cotton','felt','wool'],
+    'softness' : ['linen','silk','cotton','felt','wool'],
     'soothing' : ['linen','musical instrument','candle','blue','white wine'],
     'space' : ['bowl','dish','glass','cup','crystal'],
     'stillness' : ['water','bowl','incense','crystal','white'],
@@ -168,6 +168,7 @@
       var trait = concept.traits[i];
       var names = stuff.concat(colors.concat(canBeColored)).map(function(x) { return x.name; });
       var ing = getNewIngredient(trait, names, colors.length < canBeColored.length);
+      console.log(ing.name);
       if(!ing) { continue; }
       ing.reason = getReason(trait);
       if(ing.type === 'color' ) {
@@ -277,7 +278,7 @@
     return rndArr(invocations).replace('_',toUpper(concept.name)).replace('^',rndArr(godNames));
   }
 
-  var getHistory = function(ingredients) {
+  var getHistory = function(ingredients,concept) {
     var date = Math.ceil(Math.random() * 1000) + 1000;
     var starts = [
       'This spell dates from _. ',
@@ -288,20 +289,24 @@
     ];
     var included = ['', 'included ', 'meant ','in order '];
     var represent = ['symbolize','represent','bring to mind','stand for'];
+    var associated = ['associated with','connected to','reminiscent of'];
     var history = rndArr(starts).replace('_',date);
     for(var i = 0; i < ingredients.length; i++) {
       var ing = ingredients[i];
       history += ('The ' + ing.name + ' is ' + rndArr(included) + 'to ' + rndArr(represent) + ' ' + ing.reason + '. ');
+      if(ing.prefix) {
+        history += ('The color ' + ing.prefix + ' is ' + rndArr(associated) + ' with ' + concept.name + '.')
+      }
     }
     return history;
   }
 
   app.controller( 'spellCtrl', function( $scope, $http ) {
-    var concept = rndArr(concepts);
+    var concept = concepts[7];//rndArr(concepts);
     $scope.spellname = getSpellName(concept);
     $scope.ingredients = getIngredients(concept);
     $scope.special = '';
-    $scope.history = getHistory($scope.ingredients);
+    $scope.history = getHistory($scope.ingredients,concept);
     var steps = getSteps($scope.ingredients);
     steps.push(getInvocation(concept));
     $scope.steps = steps;
