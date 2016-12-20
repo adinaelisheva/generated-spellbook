@@ -13,7 +13,7 @@
     {name: 'strength', positive: true, traits: ['growth','metal','weight','support']},
     {name: 'work', positive: true, traits: ['growth','weight','support','happiness']},
     //the traits of negative things are the opposite of the things themselves
-    {name: 'work', positive: false, traits: ['light','growth','space','time']},
+    {name: 'stress', positive: false, traits: ['light','growth','space','time']},
     {name: 'sorrow', positive: false, traits: ['happiness','light','growth','music']},
     {name: 'fatigue', positive: false, traits: ['rest','calm','space','light']},
     {name: 'hunger', positive: false, traits: ['weight','growth','food','gold']},
@@ -30,16 +30,16 @@
     'weight' : ['stone','dish','grey','black'],
     'blue' : ['blue','water','milk','marble'],
     'calm' : ['silk','water','pearl','cotton','incense'],
-    'food' : ['bread','cake','cookie','apple','biscuit'],
+    'food' : ['bread','cake','cookie','apple','biscuit', 'vanilla'],
     'gold' : ['gold','coin','necklace','ring'],
-    'growth' : ['plant','fern','crystal','rose','daisy','basil','thyme','tulip','clover'],
-    'happiness' : ['gold','candle','cookie','rose','white wine','glitter'],
+    'growth' : ['rose oil','lavender oil','plant','fern','crystal','rose','daisy','basil','thyme','tulip','clover'],
+    'happiness' : ['gold','candle','cookie','rose','white wine','glitter','rose oil','lemon oil'],
     'heaviness' : ['coin','paperweight','dish','small statue'],
     'music' : ['musical instrument','radio','glitter','bell','rattle'],
-    'red' : ['red','rose','blood','red wine','ruby'],
-    'rest' : ['linen','cotton','doll','white'],
+    'red' : ['red','rose','blood','red wine','ruby','rose oil'],
+    'rest' : ['linen','cotton','doll','white','lavender oil'],
     'softness' : ['linen','silk','cotton','felt','wool'],
-    'soothing' : ['linen','musical instrument','candle','blue','white wine'],
+    'soothing' : ['linen','musical instrument','candle','blue','white wine','lavender oil'],
     'space' : ['bowl','dish','glass','cup','crystal'],
     'stillness' : ['water','bowl','incense','crystal','white'],
     'support' : ['small statue','paperweight','dish','plant'],
@@ -105,6 +105,10 @@
     'water' : { 'name' : 'water', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
     'white' : { 'name' : 'white', 'type' : 'color', 'canBeColored' : false, 'prefix' : ''},
     'wool' : { 'name' : 'wool', 'type' : 'object', 'canBeColored' : true, 'prefix' : ''},
+    'vanilla' : { 'name' : 'vanilla', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
+    'rose oil' : { 'name' : 'rose oil', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
+    'lavender oil' : { 'name' : 'lavender oil', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''},
+    'lemon oil' : { 'name' : 'lemon oil', 'type' : 'liquid', 'canBeColored' : false, 'prefix' : ''}
   }
 
   godNames = ['Lord','Lady','Master','Mistress','God','Goddess','Saint','Patron','Matron']
@@ -168,10 +172,15 @@
       var trait = concept.traits[i];
       var names = stuff.concat(colors.concat(canBeColored)).map(function(x) { return x.name; });
       var ing = getNewIngredient(trait, names, colors.length < canBeColored.length);
-      console.log(ing.name);
       if(!ing) { continue; }
       ing.reason = getReason(trait);
       if(ing.type === 'color' ) {
+        if(trait === ing.name) {
+          //eg, if blue represents the color blue, don't say that. go back to the original concept.
+          ing.reason = concept.name;
+        } else {
+          ing.reason = trait;
+        }
         colors.push(ing);
       } else if(ing.canBeColored) {
         canBeColored.push(ing);
@@ -182,6 +191,7 @@
     for(i = 0; i < canBeColored.length; i++) {
       if(colors[i]) {
         canBeColored[i].prefix = colors[i].name + ' ';
+        canBeColored[i].prefixReason = colors[i].reason;
       }
       stuff.push(canBeColored[i]);
     }
@@ -295,14 +305,14 @@
       var ing = ingredients[i];
       history += ('The ' + ing.name + ' is ' + rndArr(included) + 'to ' + rndArr(represent) + ' ' + ing.reason + '. ');
       if(ing.prefix) {
-        history += ('The color ' + ing.prefix + ' is ' + rndArr(associated) + ' with ' + concept.name + '.')
+        history += ('The color ' + ing.prefix + ' is ' + rndArr(associated) + ' ' + ing.prefixReason + '. ')
       }
     }
     return history;
   }
 
   app.controller( 'spellCtrl', function( $scope, $http ) {
-    var concept = concepts[7];//rndArr(concepts);
+    var concept = concepts[1];//rndArr(concepts);
     $scope.spellname = getSpellName(concept);
     $scope.ingredients = getIngredients(concept);
     $scope.special = '';
