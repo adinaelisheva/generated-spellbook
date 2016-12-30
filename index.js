@@ -312,7 +312,7 @@
   }
 
   app.controller( 'spellCtrl', function( $scope, $http ) {
-    var concept = concepts[1];//rndArr(concepts);
+    var concept = rndArr(concepts);
     $scope.spellname = getSpellName(concept);
     $scope.ingredients = getIngredients(concept);
     $scope.special = '';
