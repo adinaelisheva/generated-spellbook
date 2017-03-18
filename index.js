@@ -318,7 +318,7 @@
         .replace('#',rndArr(books));
     for(var i = 0; i < ingredients.length; i++) {
       var ing = ingredients[i];
-      var simpleForm = Math.floor(Math.random()*3) === 0;
+      var simpleForm = Math.floor(Math.random()*3) > 0;
       var midsection = simpleForm ? ' ' + rndArr(represents) : ' is ' + rndArr(included) + 'to ' + rndArr(represent);
       history += ('The ' + ing.name + midsection + ' ' + ing.reason + '. ');
       if(ing.prefix) {
