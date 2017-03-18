@@ -290,20 +290,37 @@
 
   var getHistory = function(ingredients,concept) {
     var date = Math.ceil(Math.random() * 1000) + 1000;
+    var spells = ['spell','enchantment','ritual','charm'];
+    var books = ['manuscript','scroll','book','journal','parchment','codex'];
     var starts = [
-      'This spell dates from _. ',
-      'This spell was written in _. ',
-      'This spell was discovered in a manuscript from _. ',
-      'Written in _, this spell was found in an old scroll. ',
-      'Discovered in a mysterious cavern, the manuscript containing this scroll dates from _. '
+      'This * dates from _. ',
+      'This * was written in _. ',
+      'This * was discovered in a # from _. ',
+      'Written in _, this * was found in an old #. ',
+      'Although discovered recently, the # containing this * dates from _. ',
+      'This * is believed to date from _. ',
+      'Scholars date this * to _. ',
+      'Scholars believe this * dates from _. ',
+      'Evidence of this * can be found as early as _.' ,
+      'Written in _, this * was only discovered recently. ',
+      'This is a * from _. ',
+      'This * has been in use since _. ',
+      'This * has been passed along by word of mouth since at least _. ',
+      'In common use since _, this * was recently discovered in an ancient #. ',
     ];
     var included = ['', 'included ', 'meant ','in order '];
     var represent = ['symbolize','represent','bring to mind','stand for'];
+    var represents = ['symbolizes','represents','brings to mind','stands for','is for','is included for'];
     var associated = ['associated with','connected to','reminiscent of'];
-    var history = rndArr(starts).replace('_',date);
+    var history = rndArr(starts)
+        .replace('_',date)
+        .replace('*',rndArr(spells))
+        .replace('#',rndArr(books));
     for(var i = 0; i < ingredients.length; i++) {
       var ing = ingredients[i];
-      history += ('The ' + ing.name + ' is ' + rndArr(included) + 'to ' + rndArr(represent) + ' ' + ing.reason + '. ');
+      var simpleForm = Math.floor(Math.random()*3) === 0;
+      var midsection = simpleForm ? ' ' + rndArr(represents) : ' is ' + rndArr(included) + 'to ' + rndArr(represent);
+      history += ('The ' + ing.name + midsection + ' ' + ing.reason + '. ');
       if(ing.prefix) {
         history += ('The color ' + ing.prefix + ' is ' + rndArr(associated) + ' ' + ing.prefixReason + '. ')
       }
